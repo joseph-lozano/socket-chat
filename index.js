@@ -11,9 +11,10 @@ app.get('/', function(req, res){
 
 
 io.on('connection', function(socket){
-  console.log('a user connected');
+  var user = {};
   socket.on('disconnect', function(){
-    console.log('user disconnected');
+    io.emit('user left', user.name)
+    console.log(user.name, 'disconnected');
   });
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
@@ -22,7 +23,9 @@ io.on('connection', function(socket){
     io.emit('is typing', usr)
   })
   socket.on('user joined', function(name){
+    console.log(name, 'connected');
     io.emit('user joined', name)
+    user.name = name
   })
 });
 

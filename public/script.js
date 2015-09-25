@@ -25,6 +25,10 @@ socket.on('user joined', function(name){
   $('#messages').append($('<li>').text(name + " has joined the chat!"))
 })
 
+socket.on('user left', function(name){
+  $('#messages').append($('<li>').text(name + " has left the chat"))
+})
+
 // $('#m').on('input', function(){
 //   socket.emit('is typing', "user");
 // })
