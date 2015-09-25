@@ -1,0 +1,43 @@
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body {
+  font: 13px Helvetica, Arial;
+}
+
+#chat-box {
+  background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; display: none;
+}
+
+#chat-box input {
+  border: 0; padding: 10px; width: 90%; margin-right: .5%;
+}
+
+#chat-box button {
+  width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px;
+}
+
+#name-input {
+  padding: 3px; position: fixed; bottom: 50%; width: 50%; margin-left: 35%;
+}
+
+#name-input input {
+  border: solid black 2px; padding: 10px; width: 40%;
+}
+
+#name-input button {
+  width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px;
+}
+
+#messages {
+  list-style-type: none; margin: 0; padding: 0;
+}
+
+#messages li {
+  padding: 5px 10px;
+}
+
+#messages li:nth-child(odd) {
+  background: #eee;
+}
