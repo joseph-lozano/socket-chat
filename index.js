@@ -31,7 +31,3 @@ http.listen(port, function(){
   console.log('listening on *:', port);
 });
 
-io.configure(function () {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 20);
-});
