@@ -13,19 +13,21 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
-});
-
-io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     console.log('message: ' + msg);
   });
-});
-
-io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
+  socket.on('is typing', function(usr){
+    io.emit('is typing', usr)
+  })
+  socket.on('user joined', function(name){
+    io.emit('user joined', name)
+    console.log(name, "has joined the chat")
+  })
 });
+
 
 var port = process.env.PORT || 5000
 

@@ -5,25 +5,42 @@
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #chat-box { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; display: none; }
+      #chat-box input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      #chat-box button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #name-input {padding: 3px; position: fixed; bottom: 50%; width: 50%; margin-left: 35%; }
+      #name-input input { border: solid black 2px; padding: 10px; width: 40%;}
+      #name-input button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
     </style>
   </head>
   <body>
+    <form id='name-input'>
+      <h3>Whats Your name?</h3>
+      <input type="text" id='n'/><button>Submit</button>
+    </form>
     <ul id="messages"></ul>
-    <form>
+
+    <form id="chat-box">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>
+      var name = ""
       var socket = io();
-      $('form').submit(function(){
+      $('#name-input').submit(function(){
+        name = $('#n').val();
+        $('#n').val('');
+        $('#name-input').css('display', 'none')
+        $('#chat-box').css('display', 'block')
+        socket.emit('user joined', name);
+        return false
+      })
+      $('#chat-box').submit(function(){
         socket.emit('chat message', $('#m').val());
         $('#m').val('');
         return false;
@@ -31,6 +48,16 @@
       socket.on('chat message', function(msg){
         $('#messages').append($('<li>').text(msg));
       });
+      socket.on('user joined', function(name){
+        $('#messages').append($('<li>').text(name + " has joined the chat!"))
+      })
+      // $('#m').on('input', function(){
+      //   socket.emit('is typing', "user");
+      // })
+      // socket.on('is typing', function(usr){
+      //   console.log('is typing')
+      //   $('#messages').append($('<li>').text("User is Tpying"))
+      // })
     </script>
   </body>
 </html>
