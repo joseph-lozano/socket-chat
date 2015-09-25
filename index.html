@@ -3,20 +3,31 @@
   <head>
     <title>Socket.IO chat</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script><!-- load angular -->
+    <script src="core.js"></script>
+
   </head>
   <body>
+
     <form id='name-input'>
       <h3>Whats Your name?</h3>
       <input type="text" id='n'/><button>Submit</button>
     </form>
-    <ul id="messages"></ul>
+    <div>
+      <ul id="messages"></ul>
+    </div>
+    <div>
+      <form id="chat-box">
+        <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+    </div>
 
-    <form id="chat-box">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
+
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src='/script.js'></script>
   </body>
 </html>

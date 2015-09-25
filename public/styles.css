@@ -4,6 +4,7 @@
 
 body {
   font: 13px Helvetica, Arial;
+  overflow: hidden;
 }
 
 #chat-box {
@@ -32,6 +33,7 @@ body {
 
 #messages {
   list-style-type: none; margin: 0; padding: 0;
+  max-height: 90%;
 }
 
 #messages li {
