@@ -2,9 +2,11 @@
   margin: 0; padding: 0; box-sizing: border-box;
 }
 
+html {height: 100%;}
+
 body {
   font: 13px Helvetica, Arial;
-  overflow: hidden;
+  height: 100%;
 }
 
 #chat-box {
@@ -31,9 +33,14 @@ body {
   width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px;
 }
 
+#message-view{
+  height: calc(100% - 45px);
+  overflow: scroll;
+}
+
 #messages {
+  /*height: 100px;*/
   list-style-type: none; margin: 0; padding: 0;
-  max-height: 90%;
 }
 
 #messages li {

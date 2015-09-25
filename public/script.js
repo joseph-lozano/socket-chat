@@ -12,8 +12,11 @@ $('#name-input').submit(function(){
 
 $('#chat-box').submit(function(){
   msg = $('#m').val()
+  console.log($("#messages").height())
   socket.emit('chat message', {message: msg, name: name});
   $('#m').val('');
+  $('#message-view').animate({
+        scrollTop: $('#message-view')[0].scrollHeight}, 10);
   return false;
 });
 
